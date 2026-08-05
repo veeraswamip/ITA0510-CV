@@ -1,0 +1,22 @@
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Read the input image
+image = cv2.imread("sample.jpg")   # Image must be in same folder
+
+# Define color channels
+colors = ('b', 'g', 'r')
+
+# Plot histogram for each color channel
+plt.figure()
+plt.title("Color Histogram Analysis")
+plt.xlabel("Pixel Intensity")
+plt.ylabel("Frequency")
+
+for i, color in enumerate(colors):
+    histogram = cv2.calcHist([image], [i], None, [256], [0, 256])
+    plt.plot(histogram, color=color)
+    plt.xlim([0, 256])
+
+plt.show()
